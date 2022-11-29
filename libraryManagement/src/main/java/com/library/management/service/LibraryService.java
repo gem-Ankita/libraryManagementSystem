@@ -9,7 +9,11 @@ public interface LibraryService {
 
     BookDto getBookById(Integer bookId);
 
-    List<BookDto> getAllBooks();
+    List<BookDto> getAllBooks(Integer pageNumber,Integer pagesize,String sortBy);
 
     void deleteBook(Integer bookId);
+
+    BookDto getBookByAuthorName(String bookName);
+
+    BookDto getBookByPublisherName(String publisherName);
 }
