@@ -20,4 +20,5 @@ public class Author {
     @OneToMany(cascade = CascadeType.ALL,mappedBy = "authorId")
     List<Book> booksList;
     String authorName;
+
 }

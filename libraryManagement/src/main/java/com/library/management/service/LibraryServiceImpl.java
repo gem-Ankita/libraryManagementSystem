@@ -52,7 +52,7 @@ public class LibraryServiceImpl implements LibraryService {
         book.setPublishDate(bookDto.getPublishDate());
         book.setAuthorId(author);
         book.setPublisherId(publisher);
-        libraryRepository.save(book);
+        book=libraryRepository.save(book);
         log.info("Books stored in the library");
         return bookDto;
     }
