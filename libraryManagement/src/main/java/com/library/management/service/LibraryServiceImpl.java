@@ -104,7 +104,6 @@ public class LibraryServiceImpl implements LibraryService {
             bookDto.setPublisherName(book.getPublisherId().getPublisherName());
             bookDto.setBookName(book.getBookName());
             bookDto.setPublishDate(book.getPublishDate());
-
         }
         return bookDto;
     }
