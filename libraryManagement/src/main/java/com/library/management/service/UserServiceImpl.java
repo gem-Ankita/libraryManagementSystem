@@ -55,9 +55,10 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void deleteUser(Integer userId) {
+    public String deleteUser(Integer userId) {
         User user = this.userRepository.findById(userId).orElseThrow(() -> new ConfigDataResourceNotFoundException("User", "Id", String.valueOf(userId)));
         this.userRepository.delete(user);
+        return "Deleted Successfully";
     }
 
     private User dtToUser(UserDto userDto) {

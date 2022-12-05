@@ -14,10 +14,13 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringBootTest
@@ -58,15 +61,21 @@ class UserControllerTest {
     }
 
     @Test
-    void updateUser() {
-//        Integer userId=1;
-//        when(userService.updateUser(userDto,userId)).thenReturn(userDto);
-//        mockMvc.perform("/api/users/update/" + userId))
-
-
+    void updateUser() throws Exception {
+        Integer userId=1;
+        when(userService.updateUser(userDto,userId)).thenReturn(userDto);
+        mockMvc.perform(put("/api/users/update/" + userId)
+                .content(objectMapper.writeValueAsString(userDto)).contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk());
     }
 
     @Test
-    void deleteUser() {
+    void deleteUser() throws Exception {
+        Integer userId=1;
+        String message="Deleted Successfully";
+        when(userService.deleteUser(userId)).thenReturn(message);
+       mockMvc.perform(delete("/api/users/delete/" + userId))
+               .andExpect(status().isOk())
+               .andExpect(MockMvcResultMatchers.jsonPath("message").value(message));
     }
 }
