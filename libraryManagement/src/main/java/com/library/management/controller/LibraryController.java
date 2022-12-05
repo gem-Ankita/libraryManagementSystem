@@ -60,7 +60,7 @@ public class LibraryController {
     public ResponseEntity<ApiResponse> deleteBook(@PathVariable("bookId") Integer bookId)
     {
         log.info("Delete book");
-        this.libraryService.deleteBook(bookId);
-        return ResponseEntity.ok(new ApiResponse("Successfully deleted the book",true));
+        String message=this.libraryService.deleteBook(bookId);
+        return ResponseEntity.ok(new ApiResponse(message,true));
     }
 }

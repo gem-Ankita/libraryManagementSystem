@@ -2,6 +2,7 @@ package com.library.management.controller;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.library.management.payloads.ApiResponse;
 import com.library.management.payloads.UserDto;
 import com.library.management.service.UserService;
 import org.junit.jupiter.api.BeforeEach;
@@ -72,7 +73,10 @@ class UserControllerTest {
     @Test
     void deleteUser() throws Exception {
         Integer userId=1;
-        String message="Deleted Successfully";
+        String message="Successfully deleted the user";
+        ApiResponse apiResponse=new ApiResponse();
+        apiResponse.setMessage(message);
+        apiResponse.setSuccess(true);
         when(userService.deleteUser(userId)).thenReturn(message);
        mockMvc.perform(delete("/api/users/delete/" + userId))
                .andExpect(status().isOk())

@@ -97,10 +97,11 @@ class LibraryControllerTest {
     @Test
     void deleteBook() throws Exception {
         Integer bookId=1;
+        String message="Successfully deleted the book";
         ApiResponse apiResponse=new ApiResponse();
-        apiResponse.setMessage("Successfully deleted the book");
+        apiResponse.setMessage(message);
         apiResponse.setSuccess(true);
-        libraryService.deleteBook(bookId);
+        when(libraryService.deleteBook(bookId)).thenReturn(message);
         mockMvc.perform(delete("/api/library/deleteById/" + bookId))
                 .andExpect(status().isOk())
                 .andExpect(content().string(objectMapper.writeValueAsString(apiResponse)));

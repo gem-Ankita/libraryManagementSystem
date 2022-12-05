@@ -88,10 +88,11 @@ public class LibraryServiceImpl implements LibraryService {
     }
 
     @Override
-    public void deleteBook(Integer bookId) {
+    public String deleteBook(Integer bookId) {
 
         this.libraryRepository.deleteById(bookId);
         log.info("Delete the book by given bookId");
+        return "Successfully deleted the book";
     }
 
     @Override

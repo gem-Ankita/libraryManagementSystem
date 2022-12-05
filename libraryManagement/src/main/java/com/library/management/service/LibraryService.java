@@ -11,7 +11,7 @@ public interface LibraryService {
 
     List<BookDto> getAllBooks(Integer pageNumber,Integer pagesize,String sortBy);
 
-    void deleteBook(Integer bookId);
+    String deleteBook(Integer bookId);
 
     BookDto getBookByAuthorName(String bookName);
 
